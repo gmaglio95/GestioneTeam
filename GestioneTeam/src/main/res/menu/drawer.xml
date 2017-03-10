@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group
+        android:id="@+id/firstGroup"
+        android:checkableBehavior="single">
+
+    </group>
+    <group android:id="@+id/adminFeatures">
+        <item
+            android:id="@+id/title"
+            android:title="Funzioni Amministratore"></item>
+        <item
+            android:id="@+id/registra_utente"
+            android:checked="false"
+            android:icon="@drawable/ic_action_name"
+            android:title="@string/registra_utente" />
+        <item
+            android:id="@+id/cambioPassword"
+            android:checked="false"
+            android:icon="@drawable/ic_action_name"
+            android:title="Cambio Password" />
+        <item
+            android:id="@+id/listUser"
+            android:checked="false"
+            android:icon="@drawable/ic_action_name"
+            android:title="Lista Utente" />
+        <item
+            android:id="@+id/userProfile"
+            android:checked="false"
+            android:icon="@drawable/ic_action_name"
+            android:title="User Profile" />
+        <item
+            android:id="@+id/insertImage"
+            android:checked="false"
+            android:icon="@drawable/ic_action_name"
+            android:title="Insert Image" />
+    </group>
+
+
+</menu>
