@@ -33,7 +33,12 @@
             android:id="@+id/insertImage"
             android:checked="false"
             android:icon="@drawable/ic_action_name"
-            android:title="Insert Image" />
+            android:title="Apri maps" />
+        <item
+            android:id="@+id/insertGalleryImg"
+            android:checked="false"
+            android:icon="@drawable/ic_action_name"
+            android:title="Insert Image by GaLLery" />
     </group>
 
 
