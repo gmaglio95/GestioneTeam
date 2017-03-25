@@ -6,21 +6,21 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
-import android.support.v7.app.NotificationCompat;
 import android.util.Log;
 
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
-import org.eclipse.paho.client.mqttv3.MqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.eclipse.paho.client.mqttv3.MqttTopic;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 
 import it.giuseppe.app.R;
+import it.maglio.gestioneUtenti.bean.SessionBean;
 import it.maglio.gestioneUtenti.utility.PathUtils;
+import it.tortuga.beans.User;
 
 import static android.content.Context.NOTIFICATION_SERVICE;
 
@@ -33,13 +33,12 @@ public class MqttClientUtils implements MqttCallback {
 
     private MqttClient myClient;
     MqttConnectOptions connOpt;
-    static final Boolean subscriber = true;
-    static final Boolean publisher = false;
     static final String BROKER_URL = PathUtils.BROKER_MQTT + "1883";
     private String clientID;
     private Context context;
     private Intent intent;
     private int notificationCode;
+
 
     public MqttClientUtils(String clientID, Context context, Intent intent) {
         this.clientID = clientID;
@@ -84,19 +83,14 @@ public class MqttClientUtils implements MqttCallback {
 
         // setup topic
         // topics on m2m.io are in the form <domain>/<stuff>/<thing>
-        String myTopic = "team";
-        MqttTopic topic = myClient.getTopic(myTopic);
-
-        // subscribe to topic if subscriber
-        if (subscriber) {
-            try {
-                int subQoS = 0;
-                myClient.subscribe("team/#");
-                myClient.subscribe("team/1/#");
-                myClient.subscribe("team/1/io");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        User userSession = SessionBean.getSessionBean().getUser();
+        String teamTopic = userSession.getSquadraAppartenenza();
+        String userTopic = userSession.get_id();
+        try {
+            myClient.subscribe(teamTopic);
+            myClient.subscribe(userTopic);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return connected;
     }

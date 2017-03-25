@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.ParcelFileDescriptor;
@@ -13,25 +12,17 @@ import android.provider.MediaStore;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
-import android.util.Base64;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.FileDescriptor;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.math.BigInteger;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import it.giuseppe.app.R;
-import it.maglio.gestioneUtenti.asyncTask.UploadProfileImage;
 import it.maglio.gestioneUtenti.fragment.CambioPasswordFragment;
 import it.maglio.gestioneUtenti.fragment.ListViewFragment;
 import it.maglio.gestioneUtenti.fragment.SignUpFragment;
@@ -89,7 +80,7 @@ public class MainActivity extends GeneralActivity {
         setContentView(R.layout.main_activity);
         ButterKnife.bind(this);
         buildMenuDrawerLayout(navigationView.getMenu());
-      //  startServiceNotifiche();
+        startServiceNotifiche();
         TextView username = (TextView) navigationView.getHeaderView(0).findViewById(R.id.username);
         TextView email = (TextView) navigationView.getHeaderView(0).findViewById(R.id.email);
         user = SessionBean.getSessionBean().getUser();
@@ -193,7 +184,6 @@ public class MainActivity extends GeneralActivity {
             FileDescriptor fileDescriptor = parcelFileDescriptor.getFileDescriptor();
             Bitmap image = BitmapFactory.decodeFileDescriptor(fileDescriptor);
 
-            new UploadProfileImage(getRealPathFromURI(uri)).execute();
         }
 
 
