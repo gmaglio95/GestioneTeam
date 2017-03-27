@@ -5,8 +5,8 @@ package it.maglio.gestioneUtenti.utility;
  */
 
 public interface PathUtils {
-        public static final String URL = "http://52.42.61.190:";
-//    public static final String URL = "http://192.168.5.58";
+//        public static final String URL = "http://52.42.61.190:";
+    public static final String URL = "http://192.168.5.58:";
     public static final String BROKER_MQTT = "tcp://52.42.61.190:";
     public static final String PORT = "8080";
     public static final String CONTROLLER_PATH = "/spring";

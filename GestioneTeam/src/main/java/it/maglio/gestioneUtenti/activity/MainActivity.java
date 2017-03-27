@@ -23,6 +23,7 @@ import java.io.FileNotFoundException;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import it.giuseppe.app.R;
+import it.maglio.gestioneUtenti.asyncTask.UploadImageHttpCall;
 import it.maglio.gestioneUtenti.fragment.CambioPasswordFragment;
 import it.maglio.gestioneUtenti.fragment.ListViewFragment;
 import it.maglio.gestioneUtenti.fragment.SignUpFragment;
@@ -80,7 +81,7 @@ public class MainActivity extends GeneralActivity {
         setContentView(R.layout.main_activity);
         ButterKnife.bind(this);
         buildMenuDrawerLayout(navigationView.getMenu());
-        startServiceNotifiche();
+//        startServiceNotifiche();
         TextView username = (TextView) navigationView.getHeaderView(0).findViewById(R.id.username);
         TextView email = (TextView) navigationView.getHeaderView(0).findViewById(R.id.email);
         user = SessionBean.getSessionBean().getUser();
@@ -183,7 +184,7 @@ public class MainActivity extends GeneralActivity {
             }
             FileDescriptor fileDescriptor = parcelFileDescriptor.getFileDescriptor();
             Bitmap image = BitmapFactory.decodeFileDescriptor(fileDescriptor);
-
+            new UploadImageHttpCall(image,this).execute();
         }
 
 

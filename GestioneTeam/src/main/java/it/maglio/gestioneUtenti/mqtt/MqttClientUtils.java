@@ -84,10 +84,8 @@ public class MqttClientUtils implements MqttCallback {
         // setup topic
         // topics on m2m.io are in the form <domain>/<stuff>/<thing>
         User userSession = SessionBean.getSessionBean().getUser();
-        String teamTopic = userSession.getSquadraAppartenenza();
         String userTopic = userSession.get_id();
         try {
-            myClient.subscribe(teamTopic);
             myClient.subscribe(userTopic);
         } catch (Exception e) {
             e.printStackTrace();

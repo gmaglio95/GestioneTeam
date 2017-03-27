@@ -26,6 +26,9 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 }
+android {
+    useLibrary 'org.apache.http.legacy'
+}
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
@@ -41,6 +44,10 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.1.1'
     testCompile 'junit:junit:4.12'
     compile 'com.jakewharton:butterknife:8.5.1'
+    compile group: 'org.apache.httpcomponents' , name: 'httpclient-android' , version: '4.3.5.1'
+    compile('org.apache.httpcomponents:httpmime:4.3') {
+        exclude module: "httpclient"
+    }
     compile 'com.android.support:design:25.1.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
     compile 'com.afollestad.material-dialogs:core:0.9.3.0'
