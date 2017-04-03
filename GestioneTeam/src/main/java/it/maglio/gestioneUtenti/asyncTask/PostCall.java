@@ -102,7 +102,7 @@ public class PostCall extends AsyncTask<GeneralBean, Void, GeneralBean> {
     }
 
 
-    private Gson getGson() {
+    public static Gson getGson() {
         JsonSerializer<Date> ser = new JsonSerializer<Date>() {
             @Override
             public JsonElement serialize(Date src, java.lang.reflect.Type typeOfSrc, JsonSerializationContext context) {
